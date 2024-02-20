@@ -3,11 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.redirectOutOfApp = void 0;
 var tslib_1 = require("tslib");
 function redirectOutOfApp(_a) {
-    var config = _a.config;
+    var api = _a.api, config = _a.config;
     return function redirectOutOfApp(_a) {
         var _b;
         var req = _a.req, res = _a.res, redirectUri = _a.redirectUri, shop = _a.shop;
-        if ((_b = req.headers.authorization) === null || _b === void 0 ? void 0 : _b.match(/Bearer (.*)/)) {
+        if ((!api.config.isEmbeddedApp && isFetchRequest(req)) ||
+            ((_b = req.headers.authorization) === null || _b === void 0 ? void 0 : _b.match(/Bearer (.*)/))) {
             appBridgeHeaderRedirect(config, res, redirectUri);
         }
         else if (req.query.embedded === '1') {
@@ -38,5 +39,8 @@ function exitIframeRedirect(config, req, res, redirectUri, shop) {
 function serverSideRedirect(config, res, redirectUri, shop) {
     config.logger.debug("Redirecting: request is at top level, going to ".concat(redirectUri, " "), { shop: shop });
     res.redirect(redirectUri);
+}
+function isFetchRequest(req) {
+    return req.xhr || req.headers['sec-fetch-dest'] === 'empty';
 }
 //# sourceMappingURL=redirect-out-of-app.js.map

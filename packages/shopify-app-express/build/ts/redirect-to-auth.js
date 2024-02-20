@@ -39,7 +39,7 @@ function clientSideRedirect(api, config, req, res, shop) {
     }
     var redirectUriParams = new URLSearchParams({ shop: shop, host: host }).toString();
     var redirectUri = "".concat(api.config.hostScheme, "://").concat(api.config.hostName).concat(config.auth.path, "?").concat(redirectUriParams);
-    (0, redirect_out_of_app_1.redirectOutOfApp)({ config: config })({ req: req, res: res, redirectUri: redirectUri, shop: shop });
+    (0, redirect_out_of_app_1.redirectOutOfApp)({ config: config, api: api })({ req: req, res: res, redirectUri: redirectUri, shop: shop });
 }
 function serverSideRedirect(api, config, req, res, shop, isOnline) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {

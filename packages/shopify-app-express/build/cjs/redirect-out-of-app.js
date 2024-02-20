@@ -3,6 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 function redirectOutOfApp({
+  api,
   config
 }) {
   return function redirectOutOfApp({
@@ -12,7 +13,7 @@ function redirectOutOfApp({
     shop
   }) {
     var _req$headers$authoriz;
-    if ((_req$headers$authoriz = req.headers.authorization) !== null && _req$headers$authoriz !== void 0 && _req$headers$authoriz.match(/Bearer (.*)/)) {
+    if (!api.config.isEmbeddedApp && isFetchRequest(req) || (_req$headers$authoriz = req.headers.authorization) !== null && _req$headers$authoriz !== void 0 && _req$headers$authoriz.match(/Bearer (.*)/)) {
       appBridgeHeaderRedirect(config, res, redirectUri);
     } else if (req.query.embedded === '1') {
       exitIframeRedirect(config, req, res, redirectUri, shop);
@@ -45,6 +46,9 @@ function serverSideRedirect(config, res, redirectUri, shop) {
     shop
   });
   res.redirect(redirectUri);
+}
+function isFetchRequest(req) {
+  return req.xhr || req.headers['sec-fetch-dest'] === 'empty';
 }
 
 exports.redirectOutOfApp = redirectOutOfApp;

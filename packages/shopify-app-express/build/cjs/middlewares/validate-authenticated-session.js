@@ -82,6 +82,7 @@ function validateAuthenticatedSession({
         shop
       });
       return redirectOutOfApp.redirectOutOfApp({
+        api,
         config
       })({
         req,

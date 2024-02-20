@@ -14,9 +14,7 @@ async function hasValidAccessToken(api, session) {
     const client = new api.clients.Graphql({
       session
     });
-    await client.query({
-      data: TEST_GRAPHQL_QUERY
-    });
+    await client.request(TEST_GRAPHQL_QUERY);
     return true;
   } catch (error) {
     if (error instanceof shopifyApi.HttpResponseError && error.response.code === 401) {

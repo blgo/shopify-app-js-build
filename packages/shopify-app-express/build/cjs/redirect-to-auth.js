@@ -37,7 +37,8 @@ function clientSideRedirect(api, config, req, res, shop) {
   }).toString();
   const redirectUri = `${api.config.hostScheme}://${api.config.hostName}${config.auth.path}?${redirectUriParams}`;
   redirectOutOfApp.redirectOutOfApp({
-    config
+    config,
+    api
   })({
     req,
     res,

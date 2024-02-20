@@ -68,7 +68,7 @@ async function registerWebhooks(config, api, session) {
       continue;
     }
     for (const response of responsesByTopic[topic]) {
-      if (!response.success && !shopifyApi.gdprTopics.includes(topic)) {
+      if (!response.success && !shopifyApi.privacyTopics.includes(topic)) {
         const result = response.result;
         if (result.errors) {
           config.logger.error(`Failed to register ${topic} webhook: ${result.errors[0].message}`, {

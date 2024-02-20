@@ -28,7 +28,7 @@ function shopifyApp(config) {
   const validatedConfig = validateAppConfig(appConfig, api);
   return {
     config: validatedConfig,
-    api,
+    api: api,
     auth: index.auth({
       api,
       config: validatedConfig
@@ -53,6 +53,7 @@ function shopifyApp(config) {
       config: validatedConfig
     }),
     redirectOutOfApp: redirectOutOfApp.redirectOutOfApp({
+      api,
       config: validatedConfig
     })
   };
@@ -81,7 +82,6 @@ function apiConfigWithDefaults(apiConfig) {
   };
   /* eslint-enable no-process-env */
 }
-
 function validateAppConfig(config, api) {
   const {
     sessionStorage,

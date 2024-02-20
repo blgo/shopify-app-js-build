@@ -83,7 +83,12 @@ function validateAuthenticatedSession(_a) {
                     case 12:
                         redirectUri = "".concat(config.auth.path, "?shop=").concat(shop);
                         config.logger.info("Session was not valid. Redirecting to ".concat(redirectUri), { shop: shop });
-                        return [2 /*return*/, (0, redirect_out_of_app_1.redirectOutOfApp)({ config: config })({ req: req, res: res, redirectUri: redirectUri, shop: shop })];
+                        return [2 /*return*/, (0, redirect_out_of_app_1.redirectOutOfApp)({ api: api, config: config })({
+                                req: req,
+                                res: res,
+                                redirectUri: redirectUri,
+                                shop: shop,
+                            })];
                 }
             });
         }); };

@@ -75,7 +75,7 @@ function registerWebhooks(config, api, session) {
                         try {
                             for (_a = (e_1 = void 0, tslib_1.__values(responsesByTopic[topic])), _b = _a.next(); !_b.done; _b = _a.next()) {
                                 response = _b.value;
-                                if (!response.success && !shopify_api_1.gdprTopics.includes(topic)) {
+                                if (!response.success && !shopify_api_1.privacyTopics.includes(topic)) {
                                     result = response.result;
                                     if (result.errors) {
                                         config.logger.error("Failed to register ".concat(topic, " webhook: ").concat(result.errors[0].message), { shop: session.shop });

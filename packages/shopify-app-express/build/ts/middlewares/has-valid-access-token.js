@@ -12,7 +12,7 @@ function hasValidAccessToken(api, session) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     client = new api.clients.Graphql({ session: session });
-                    return [4 /*yield*/, client.query({ data: TEST_GRAPHQL_QUERY })];
+                    return [4 /*yield*/, client.request(TEST_GRAPHQL_QUERY)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/, true];

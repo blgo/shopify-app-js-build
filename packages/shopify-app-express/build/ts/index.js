@@ -37,7 +37,7 @@ function shopifyApp(config) {
             api: api,
             config: validatedConfig,
         }),
-        redirectOutOfApp: (0, redirect_out_of_app_1.redirectOutOfApp)({ config: validatedConfig }),
+        redirectOutOfApp: (0, redirect_out_of_app_1.redirectOutOfApp)({ api: api, config: validatedConfig }),
     };
 }
 exports.shopifyApp = shopifyApp;
@@ -57,7 +57,7 @@ function validateAppConfig(config, api) {
     var sessionStorage = config.sessionStorage, configWithoutSessionStorage = tslib_1.__rest(config, ["sessionStorage"]);
     return tslib_1.__assign(tslib_1.__assign({ 
         // We override the API package's logger to add the right package context by default (and make the call simpler)
-        logger: overrideLoggerPackage(api.logger), useOnlineTokens: false, exitIframePath: '/exitiframe', sessionStorage: sessionStorage !== null && sessionStorage !== void 0 ? sessionStorage : new shopify_app_session_storage_memory_1.MemorySessionStorage() }, configWithoutSessionStorage), { auth: config.auth, webhooks: config.webhooks });
+        logger: overrideLoggerPackage(api.logger), useOnlineTokens: false, exitIframePath: '/exitiframe', sessionStorage: (sessionStorage !== null && sessionStorage !== void 0 ? sessionStorage : new shopify_app_session_storage_memory_1.MemorySessionStorage()) }, configWithoutSessionStorage), { auth: config.auth, webhooks: config.webhooks });
 }
 function overrideLoggerPackage(logger) {
     var baseContext = { package: 'shopify-app' };
