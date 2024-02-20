@@ -1,3 +1,28 @@
+The sole purpose for this repository to exist is to support larger Body size in Webhooks. The original `@shopify/shopify-app-js` repository has a limitation of 1MB for the body size of a webhook. This repository contains the build assets for the `@shopify/shopify-app-express` with increased size to 10mb: `express.text({type: '*/*', limit: '10mb'}),`
+
+IMPORTANT: This is a fork of the original `@shopify/shopify-app-js` repository that contains the build assets which can be used in a package.json file:
+    
+```json
+{
+    "dependencies": {
+        "@shopify/shopify-app-express": "https://gitpkg.now.sh/blgo/shopify-app-js-build/packages/shopify-app-express?main",
+    }
+}
+```
+
+To update from `upstream`:
+
+```bash
+git remote add upstream https://github.com/Shopify/shopify-app-js.git
+git fetch upstream
+git rebase  upstream/main
+yarn install
+yarn build
+git add .
+git commit -m "update build"
+git push
+```
+
 # `@shopify/shopify-app-js`
 
 This repo is a collection of packages that make it easy for apps to integrate with Shopify.
