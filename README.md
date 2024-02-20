@@ -18,8 +18,8 @@ git fetch upstream
 git rebase  upstream/main
 yarn install
 yarn build
-git add .
-git commit -m "update build"
+git add packages/shopify-app-express/
+git commit -m "update shopify-app-express  build"
 git push
 ```
 
